@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 pipe = pipeline("text-classification", model="tabularisai/multilingual-sentiment-analysis")
 
-df = pd.read_csv('spotify_lyrics.csv')
+df = pd.read_csv('data/spotify_lyrics.csv')
 
 if 'Lyrics' not in df.columns:
     print("Error: 'Lyrics' column not found in CSV file")
@@ -36,7 +36,7 @@ df['sentiment_score'] = scores
 cols = [col for col in df.columns if col != 'Lyrics'] + ['Lyrics']
 df = df[cols]
 
-output_file = 'spotify_sentiment.csv'
+output_file = 'data/spotify_sentiment.csv'
 df.to_csv(output_file, index=False)
 print(f"\nResults saved to {output_file}")
 

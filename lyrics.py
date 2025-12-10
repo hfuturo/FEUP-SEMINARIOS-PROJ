@@ -26,7 +26,7 @@ def clean_lyrics(text):
     
     return text
 
-df = pd.read_csv("spotify.csv")
+df = pd.read_csv("data/spotify.csv")
 
 lyrics_list = []
 rows_list = []
@@ -77,4 +77,4 @@ for genre in df["track_genre"].unique():
 processed_df = pd.DataFrame(rows_list).copy()
 processed_df["Lyrics"] = lyrics_list
 processed_df["Lyrics"] = processed_df["Lyrics"].apply(clean_lyrics)
-processed_df.to_csv("spotify_lyrics.csv", index=False)
+processed_df.to_csv("data/spotify_lyrics.csv", index=False)
