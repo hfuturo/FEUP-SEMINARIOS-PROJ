@@ -4,6 +4,7 @@ import pandas as pd
 import lyricsgenius
 import time
 import re
+import requests
 
 load_dotenv()
 
@@ -31,6 +32,7 @@ lyrics_list = []
 rows_list = []
 genre_counter = 0
 total_genres = df["track_genre"].nunique()
+stop = False
 
 for genre in df["track_genre"].unique():
 
@@ -39,7 +41,7 @@ for genre in df["track_genre"].unique():
     songs_collected = 0
 
     for index, row in subset.iterrows():
-        if songs_collected == 1:
+        if songs_collected == 50:
             break
 
         artist = row["artists"].split(";")[0]
@@ -58,8 +60,16 @@ for genre in df["track_genre"].unique():
             
             time.sleep(1)
 
+        except requests.exceptions.Timeout:
+            continue
+        
         except Exception as e:
             print(e)
+            stop = True
+            break
+
+    if stop:
+        break
 
     genre_counter += 1
     print(f"Collected {songs_collected} songs for genre '{genre}'. {genre_counter}/{total_genres}")
