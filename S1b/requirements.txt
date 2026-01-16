@@ -1,0 +1,10 @@
+numpy==2.0.1
+pandas==2.3.3
+matplotlib==3.10.7
+seaborn==0.13.2
+scikit-learn==1.7.2
+c45-decision-tree==1.0.2
+PaDEL-pywrapper==1.0.6
+legacy-cgi==2.6.3
+padelpy==0.1.16
+gspan-mining==0.2.3
